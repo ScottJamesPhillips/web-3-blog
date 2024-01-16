@@ -1,0 +1,22 @@
+{
+  "Posts": [
+    {
+      "Id": 1,
+      "Poster": 2,
+      "Message": "This is first message",
+      "Tags": "Miscellaneous"
+    },
+    {
+      "Id": 3,
+      "Poster": 4,
+      "Message": "This is second message",
+      "Tags": "Scary"
+    },
+    {
+      "Id": 5,
+      "Poster": 6,
+      "Message": "This is third message",
+      "Tags": "Funny"
+    }
+  ]
+}

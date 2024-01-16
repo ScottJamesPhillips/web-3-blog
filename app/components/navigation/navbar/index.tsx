@@ -1,7 +1,6 @@
 // @flow
-"use client";
 import * as React from "react";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -9,7 +8,7 @@ import "../../../globals.css";
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const wallet = useWallet();
+  const { wallet, connect, connected } = useWallet();
 
   const buttonStyles = {
     backgroundColor: isHovered ? "#000000" : "",
@@ -24,16 +23,17 @@ const Navbar = () => {
 
   return (
     <div className="text-right p-5">
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <WalletMultiButton style={{ ...buttonStyles }}>
-          {wallet.connected ? null : (
-            <div className="flex items-center">LOGIN</div>
-          )}
-        </WalletMultiButton>
-      </div>
+      <WalletMultiButton style={{ ...buttonStyles }}>
+        {connected ? null : (
+          <div
+            className="flex items-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            LOGIN
+          </div>
+        )}
+      </WalletMultiButton>
     </div>
   );
 };
