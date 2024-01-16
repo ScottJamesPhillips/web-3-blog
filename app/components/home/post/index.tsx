@@ -8,7 +8,7 @@ export interface Post {
   id: string;
   user: string;
   content: string;
-  timestamp: string;
+  timestamp: number;
 }
 
 function Post(props: PostProps) {
