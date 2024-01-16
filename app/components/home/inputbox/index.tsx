@@ -4,8 +4,12 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../data/firebase/firebase";
 import { useWallet } from "@solana/wallet-adapter-react";
-type Props = {};
-function InputBox(props: Props) {
+
+interface InputBoxProps {
+  onTriggerEffect: () => void;
+}
+
+const InputBox: React.FC<InputBoxProps> = ({ onTriggerEffect }) => {
   const [newPost, setNewPost] = useState({ messageId: "" });
   const { connected, publicKey } = useWallet();
 
@@ -16,10 +20,15 @@ function InputBox(props: Props) {
         const data = {
           content: newPost.messageId.trim(),
           user: publicKey.toString(), // Convert PublicKey to string
+          timestamp: new Date(),
         };
-        await addDoc(collection(db, "posts"), data).then(() => {
-          setNewPost({ messageId: "" });
-        });
+        await addDoc(collection(db, "posts"), data)
+          .then(() => {
+            setNewPost({ messageId: "" });
+          })
+          .then(() => {
+            onTriggerEffect();
+          });
       }
     } catch (err) {
       console.log(err);
@@ -44,5 +53,5 @@ function InputBox(props: Props) {
   ) : (
     <div></div>
   );
-}
+};
 export default InputBox;
