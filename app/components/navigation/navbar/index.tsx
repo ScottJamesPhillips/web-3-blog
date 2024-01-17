@@ -5,6 +5,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 require("@solana/wallet-adapter-react-ui/styles.css");
 import "../../../globals.css";
+import logo from "../../../../data/logo.jpeg";
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -22,7 +23,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="text-right p-5">
+    <div className="flex justify-between text-right align-center items-center px-5">
+      <img className="object-cover" src={logo.src} width="100" />
       <WalletMultiButton style={{ ...buttonStyles }}>
         {connected ? null : (
           <div
