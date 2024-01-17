@@ -15,6 +15,7 @@ import {
 import InputBox from "./components/home/inputbox";
 import { useEffect, useState } from "react";
 import { db } from "../data/firebase/firebase";
+import moment from "moment";
 
 export interface PostItem {
   id: string;
@@ -57,7 +58,7 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-full items-center">
+    <div className="flex flex-col h-screen w-full items-center bg-gray-50">
       <div className="flex items-center p-10 w-2/4">
         <InputBox onTriggerEffect={handleTriggerEffect} />
       </div>

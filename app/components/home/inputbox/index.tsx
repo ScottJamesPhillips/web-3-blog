@@ -4,6 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../data/firebase/firebase";
 import { useWallet } from "@solana/wallet-adapter-react";
+import moment from "moment";
 
 interface InputBoxProps {
   onTriggerEffect: () => void;
@@ -20,7 +21,7 @@ const InputBox: React.FC<InputBoxProps> = ({ onTriggerEffect }) => {
         const data = {
           content: newPost.messageId.trim(),
           user: publicKey.toString(), // Convert PublicKey to string
-          timestamp: new Date(),
+          timestamp: moment.now(),
         };
         await addDoc(collection(db, "posts"), data)
           .then(() => {
